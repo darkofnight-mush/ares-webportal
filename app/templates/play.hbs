@@ -3,9 +3,9 @@
  <h1 class="play-title">Play</h1>
 
  <div class="row">
-   <div class="col col-xs-12 col-md-3">
+   <div class="col col-12 col-md-3">
      
-     <div class="play-sidebar">
+     <div class="play-sidebar">     
      
      <button class="btn btn-secondary d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#sceneMenuCollapse" aria-expanded="false" aria-controls="sceneMenuCollapse">
          <TooltipIcon @position="right" @message="Show/hide play controls." @icon="fab fa-elementor" />
@@ -125,7 +125,7 @@
      
    </div>
    
-   <div class="col col-xs-12 col-md-9">
+   <div class="col col-12 col-md-9">
       
       {{#if this.currentScene}}
       <LinkTo @route="scene-live" @model={{this.currentScene.id}} class="play-scene-title">Scene {{this.currentScene.id}}
@@ -158,6 +158,7 @@
 
     </div>
 </div>
+
   
 <BsModalSimple @title="Add Channel" @submitTitle="Done" @size={{null}} @fade={{true}} @closeTitle="Cancel" @open={{this.showAddChannel}}  @onHide={{action (mut this.showAddChannel) false}}>
   
@@ -215,7 +216,7 @@
                <div class="col-sm-9">
                  <div class="scene-char-select" >
                    <PowerSelect @selected={{this.poseChar}} @options={{this.model.chat.pose_chars}} @searchField="name" @onChange={{action "poseCharChanged"}} as |poseChar|>
-                       <CharIconTiny @char={{this.poseChar}} />
+                       <CharIconTiny @char={{poseChar}} />
                    </PowerSelect>
                  </div>
                </div> 

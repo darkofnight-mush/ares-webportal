@@ -28,7 +28,7 @@
              </div>
 
             <table class="table">
-        
+            <tbody>
             {{#each this.files as |f|}}
             <tr>
                 <td><img class="upload-preview" alt="preview image" src="{{f.url}}" ></td>
@@ -39,6 +39,7 @@
                       {{else}}
                       <p><label class="col-xs-5">Name:</label> <Input @type="text" @value={{f.name}} /></p>
                       <p><label class="col-xs-5">Folder:</label> <Input @type="text" @value={{f.folder}} /></p>
+                      <p><label class="col-xs-5">Description:</label> <Input @type="text" @value={{f.description}} /></p>
                       <p><label class="col-xs-5">Overwrite?</label> <Input @type="checkbox" @checked={{f.allowOverwrite}} /></p>
                       {{/if}}
                     {{/if}}
@@ -61,6 +62,7 @@
                 </td>
             </tr>
             {{/each}}
+          </tbody>
         </table>
 
         <button class="btn btn-secondary" {{action 'reset'}}>Reset Uploader</button>

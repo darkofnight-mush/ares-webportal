@@ -52,7 +52,7 @@
 
  <div id="chat-window">
  {{#each this.channel.messages as |message|}}
-   <div class="hint float-right">
+   <div class="hint float-end">
          <div class="timestamp-tip">{{message.timestamp}}</div>
    </div>
  
@@ -97,7 +97,7 @@
       
       <div class="scene-dropdowns">
         
-        <DropdownMenu @id="chatMenu" @title="Chat Menu">
+        <DropdownMenu @id="chatMenu" @title="Chat Menu" @dropup={{true}} class="chat-menu">
           {{#if this.channel.is_page}}
             {{#if this.channel.is_hidden}}
               <li><a href="#" {{action "hidePage" false}} class="dropdown-item">Unhide Conversation</a></li>
