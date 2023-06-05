@@ -23,6 +23,7 @@ Router.map(function() {
   this.route('app-review', { path: '/app/:id' });
   this.route('area', { path: '/area/:id'});
   this.route('area-edit', { path: '/area/:id/edit'});
+  this.route('area-create', { path: '/area/create'});
   this.route('banned');
   this.route('census');
   this.route('census-group', { path: '/census/:filter' });
@@ -45,6 +46,7 @@ Router.map(function() {
   this.route('combatant-edit', { path: '/combatant/:id' });
   this.route('combats');
   this.route('config', { path: '/config/:file' });
+  this.route('custom-code');
   this.route('emoji');
   this.route('error');
   this.route('events');
@@ -83,6 +85,7 @@ Router.map(function() {
   this.route('jobcat-manage');
   this.route('locations');
   this.route('location', { path: '/location/:id'});
+  this.route('location-create', { path: '/location/create'});
   this.route('location-edit', { path: '/location/:id/edit'});
   this.route('logs');
   this.route('log', { path: '/log/:file' });
@@ -120,6 +123,7 @@ Router.map(function() {
   this.route('scene-edit', { path: '/scene/:id/edit' } );
   this.route('scene-download', { path: '/scene/:id/download' } );
   this.route('scene-create', { path: '/scene/create', query_params: ['location'] } );
+  this.route('scene-source', { path: '/scene/:scene_id/source/:version_id'});
   this.route('search-locations');
   this.route('search-scenes');
   this.route('search-jobs');

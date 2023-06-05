@@ -43,9 +43,9 @@
                 {{#if (not this.scene.reload_required)}}
                   {{#if (and this.isApproved pose.can_edit)}}
                     {{#if (not pose.editActive)}}
-                    <a href="#" {{action 'editScenePose' pose}}><i class="fas fa-edit"></i></a>
+                    <a href="#" {{action 'editScenePose' pose}}><i class="fas fa-edit" aria-label="Edit Pose"></i></a>
                     {{#if pose.can_delete}}
-                    <a href="#" {{action (mut this.confirmDeleteScenePose) pose}}><i class="fas fa-trash"></i></a>
+                    <a href="#" {{action (mut this.confirmDeleteScenePose) pose}}><i class="fas fa-trash" aria-label="Delete Pose"></i></a>
                     {{/if}}
                     {{/if}}
                   {{/if}}
@@ -158,7 +158,7 @@
                    <LiveSceneTxt @scenePose={{this.scene.draftPose}} @scene={{this.scene}} />
                  {{/if}}
                  
-             <LiveSceneCustomScenepose @scenePose={{this.scene.draftPose}} @scene={{this.scene}} />
+             <LiveSceneCustomScenepose @scenePose={{this.scene.draftPose}} @scene={{this.scene}} @custom={{this.custom}} />
              </div>
                 
              <div class="scene-pose-select">
@@ -181,6 +181,7 @@
              <DropdownMenu @id="playMenu" @title="Play"  @dropup={{true}} class="scene-menu">
                {{#if this.scene.can_edit}}
                    <li><a href="#" {{action (mut this.selectLocation) true}} class="dropdown-item">Change Location</a></li>
+                   <li><a href="#" {{action (mut this.showInvitation) true}} class="dropdown-item">Invite Character</a></li>
                    <li><a href="#" {{action (mut this.managePoseOrder) true}} class="dropdown-item">Manage Pose Order</a></li>
                {{/if}}
 
@@ -209,7 +210,7 @@
                <LiveSceneDice @scene={{this.scene}} />
                {{/if}}
             
-               <LiveSceneCustomPlay @scene={{this.scene}} @abilities={{this.abilities}} />
+               <LiveSceneCustomPlay @scene={{this.scene}} @abilities={{this.abilities}} @custom={{this.custom}} />
                  
              </DropdownMenu>
              
@@ -298,6 +299,14 @@
          </p>
     </BsModalSimple>
     
+    
+    <BsModalSimple @title="Invite a Character" @closeTitle="Cancel" @submitTitle="Invite" @size={{null}} @fade={{true}} @open={{this.showInvitation}} @onSubmit={{action "inviteChar"}} @onHide={{action (mut this.showInvitation) null}}>
+          <PowerSelect @selected={{this.selectedInvitee}} @options={{this.characters}} @searchField="name"  @onChange={{action "changeInvitee"}} as |char|>
+        {{char.name}}
+      </PowerSelect>
+    </BsModalSimple>
+    
+    
     <BsModalSimple @title="Manage Pose Order" @closeTitle="Cancel" @size={{null}} @fade={{true}} @open={{this.managePoseOrder}} @onHide={{action (mut this.managePoseOrder) false}}>
         
         <table>
@@ -328,7 +337,7 @@
     <BsModalSimple @title="Character Card" @closeTitle="Close" @size={{null}} @fade={{true}} @open={{this.characterCard}} @onHide={{action (mut this.characterCard) false}}>
       
       {{#if this.scene.use_custom_char_cards}}
-        <CharCardCustom @char={{this.characterCardInfo}} />
+        <CharCardCustom @char={{this.characterCardInfo}} @custom={{this.custom}} />
       {{else}}
         <CharCard @char={{this.characterCardInfo}} />
       {{/if}}
